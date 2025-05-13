@@ -3,11 +3,12 @@ package com.example.planner.controller;
 import com.example.planner.dto.PlanRequestDto;
 import com.example.planner.dto.PlanResponseDto;
 import com.example.planner.service.PlanService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -29,9 +30,11 @@ public class PlanController {
     @GetMapping
     public ResponseEntity<List<PlanResponseDto>> findPlanByNameOrUpdatedDate(
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) Date updated_date
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate updatedDate
     ) {
-        return new ResponseEntity<>(planService.findPlanByNameOrUpdatedDate(name, updated_date), HttpStatus.OK);
+        return new ResponseEntity<>(planService.findPlanByNameOrUpdatedDate(name, updatedDate), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

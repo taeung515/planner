@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -30,7 +30,7 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public List<PlanResponseDto> findPlanByNameOrUpdatedDate(String name, Date updatedDate) {
+    public List<PlanResponseDto> findPlanByNameOrUpdatedDate(String name, LocalDate updatedDate) {
 
         if (name != null && updatedDate != null) {
 

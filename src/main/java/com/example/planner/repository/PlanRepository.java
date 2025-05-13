@@ -3,7 +3,7 @@ package com.example.planner.repository;
 import com.example.planner.dto.PlanResponseDto;
 import com.example.planner.entity.Plan;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PlanRepository {
@@ -12,11 +12,11 @@ public interface PlanRepository {
 
     List<PlanResponseDto> findAllPlans();
 
-    List<PlanResponseDto> findPlanByDate(Date updatedDate);
+    List<PlanResponseDto> findPlanByDate(LocalDate updatedDate);
 
     List<PlanResponseDto> findPlanByName(String name);
 
-    List<PlanResponseDto> findPlanByNameOrUpdatedDate(String name, Date updatedDate);
+    List<PlanResponseDto> findPlanByNameOrUpdatedDate(String name, LocalDate updatedDate);
 
     Plan findPlanByID(Long id);
 
