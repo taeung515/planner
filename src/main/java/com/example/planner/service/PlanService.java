@@ -10,4 +10,6 @@ public interface PlanService {
     PlanResponseDto createPlan(PlanRequestDto dto);
 
     List<PlanResponseDto> findPlanByNameOrUpdatedDate(String name, Date updatedDate);
+
+    PlanResponseDto findPlanById(Long id);
 }

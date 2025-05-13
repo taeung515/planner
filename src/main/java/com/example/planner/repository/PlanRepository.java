@@ -5,6 +5,7 @@ import com.example.planner.entity.Plan;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface PlanRepository {
 
@@ -17,4 +18,6 @@ public interface PlanRepository {
     List<PlanResponseDto> findPlanByName(String name);
 
     List<PlanResponseDto> findPlanByNameOrUpdatedDate(String name, Date updatedDate);
+
+    Plan findPlanByID(Long id);
 }

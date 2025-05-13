@@ -34,4 +34,12 @@ public class PlanController {
         return new ResponseEntity<>(planService.findPlanByNameOrUpdatedDate(name, updated_date), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PlanResponseDto> findPlanById(@PathVariable Long id) {
+        return new ResponseEntity<>(planService.findPlanById(id), HttpStatus.OK);
+    }
+
+
+
+
 }

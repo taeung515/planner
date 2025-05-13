@@ -47,4 +47,10 @@ public class PlanServiceImpl implements PlanService {
 
         }
     }
+
+    @Override
+    public PlanResponseDto findPlanById(Long id) {
+        Plan planByID = planRepository.findPlanByID(id);
+        return new PlanResponseDto(planByID);
+    }
 }
