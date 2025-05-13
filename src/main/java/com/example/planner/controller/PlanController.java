@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.transform.OutputKeys;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +45,12 @@ public class PlanController {
             @RequestBody PlanRequestDto dto
     ) {
         return new ResponseEntity<>(planService.updatePlan(id, dto.getName(), dto.getPassword(), dto.getTodo()), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePlan(@PathVariable Long id) {
+        planService.deletePlan(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

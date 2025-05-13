@@ -21,4 +21,6 @@ public interface PlanRepository {
     Plan findPlanByID(Long id);
 
     int updatePlan(Long id, String name, String todo);
+
+    int deletePlan(Long id);
 }

@@ -80,6 +80,11 @@ public class JdbcTemplatePlanRepository implements PlanRepository {
         return jdbcTemplate.update("UPDATE plan SET name = ?, todo = ? where id = ?", name, todo, id);
     }
 
+    @Override
+    public int deletePlan(Long id) {
+        return jdbcTemplate.update("DELETE FROM plan WHERE id = ?", id);
+    }
+
     private RowMapper<Plan> planRowMapperV2() {
         return new RowMapper<Plan>() {
             @Override

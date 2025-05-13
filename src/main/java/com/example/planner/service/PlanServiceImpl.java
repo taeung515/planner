@@ -6,6 +6,7 @@ import com.example.planner.entity.Plan;
 import com.example.planner.repository.PlanRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
@@ -56,6 +57,7 @@ public class PlanServiceImpl implements PlanService {
         return new PlanResponseDto(planByID);
     }
 
+    @Transactional
     @Override
     public PlanResponseDto updatePlan(Long id, String name, String password, String todo) {
 
@@ -78,6 +80,15 @@ public class PlanServiceImpl implements PlanService {
         Plan updatedPlan = planRepository.findPlanByID(id);
 
         return new PlanResponseDto(updatedPlan);
+    }
+
+    @Override
+    public void deletePlan(Long id) {
+        int deletedRow = planRepository.deletePlan(id);
+
+        if (deletedRow == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
     }
 
 }
