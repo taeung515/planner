@@ -75,6 +75,11 @@ public class JdbcTemplatePlanRepository implements PlanRepository {
         return query.stream().findAny().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exists id = " + id));
     }
 
+    @Override
+    public int updatePlan(Long id, String name, String todo) {
+        return jdbcTemplate.update("UPDATE plan SET name = ?, todo = ? where id = ?", name, todo, id);
+    }
+
     private RowMapper<Plan> planRowMapperV2() {
         return new RowMapper<Plan>() {
             @Override

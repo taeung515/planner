@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.OutputKeys;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,13 @@ public class PlanController {
         return new ResponseEntity<>(planService.findPlanById(id), HttpStatus.OK);
     }
 
-
+    @PatchMapping("/{id}")
+    public ResponseEntity<PlanResponseDto> updatePlan(
+            @PathVariable Long id,
+            @RequestBody PlanRequestDto dto
+    ) {
+        return new ResponseEntity<>(planService.updatePlan(id, dto.getName(), dto.getPassword(), dto.getTodo()), HttpStatus.OK);
+    }
 
 
 }
