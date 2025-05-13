@@ -1,0 +1,11 @@
+CREATE TABLE plan
+(
+    id           BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '할일 식별자',
+    name         VARCHAR(10) NOT NULL COMMENT '이름',
+    password     VARCHAR(50) NOT NULL COMMENT '비밀번호',
+    todo         VARCHAR(50) NOT NULL COMMENT '할일',
+
+    created_date DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록한 시간',
+    updated_date DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정한 시간'
+);
+
