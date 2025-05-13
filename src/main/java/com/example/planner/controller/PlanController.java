@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
+
 @RestController
 @RequestMapping("/plans")
 public class PlanController {
@@ -21,6 +24,14 @@ public class PlanController {
     @PostMapping
     public ResponseEntity<PlanResponseDto> createPlan(@RequestBody PlanRequestDto dto) {
         return new ResponseEntity<>(planService.createPlan(dto), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PlanResponseDto>> findPlanByNameOrUpdatedDate(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Date updated_date
+    ) {
+        return new ResponseEntity<>(planService.findPlanByNameOrUpdatedDate(name, updated_date), HttpStatus.OK);
     }
 
 }

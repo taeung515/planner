@@ -16,4 +16,10 @@ public class PlanResponseDto {
     private Date createdDate;
     private Date updatedDate;
 
+    public PlanResponseDto(String name, String todo, Date updatedDate) {
+        this.name = name;
+        this.todo = todo;
+        this.updatedDate = updatedDate;
+    }
+
 }

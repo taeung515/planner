@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,29 @@ public class JdbcTemplatePlanRepository implements PlanRepository {
 
         return dto.get(0);
     }
+
+    @Override
+    public List<PlanResponseDto> findAllPlans() {
+        return jdbcTemplate.query("SELECT * FROM plan ORDER BY updated_date DESC", planRowMapper());
+    }
+
+    @Override
+    public List<PlanResponseDto> findPlanByDate(Date updatedDate) {
+        return jdbcTemplate.query("SELECT * FROM plan WHERE updated_date = ? ORDER BY updated_date DESC", planRowMapper(), updatedDate);
+    }
+
+    @Override
+    public List<PlanResponseDto> findPlanByName(String name) {
+        return jdbcTemplate.query("SELECT * FROM plan WHERE name = ? ORDER BY updated_date DESC", planRowMapper(), name);
+    }
+
+
+    @Override
+    public List<PlanResponseDto> findPlanByNameOrUpdatedDate(String name, Date updatedDate) {
+        return jdbcTemplate.query("SELECT * FROM plan WHERE name = ? AND updated_date = ? ORDER BY updated_date DESC", planRowMapper(), name, updatedDate);
+
+    }
+
 
     private RowMapper<PlanResponseDto> planRowMapper() {
         return new RowMapper<>() {

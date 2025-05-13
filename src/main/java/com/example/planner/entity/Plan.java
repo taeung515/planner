@@ -3,7 +3,7 @@ package com.example.planner.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @AllArgsConstructor
@@ -14,8 +14,8 @@ public class Plan {
     private String password;
     private String todo;
 
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
+    private Date createdDate;
+    private Date updatedDate;
 
     public Plan(String name, String password, String todo) {
         this.name = name;
@@ -23,4 +23,8 @@ public class Plan {
         this.todo = todo;
     }
 
+    public Plan(String name, Date updatedDate) {
+        this.name = name;
+        this.updatedDate = updatedDate;
+    }
 }

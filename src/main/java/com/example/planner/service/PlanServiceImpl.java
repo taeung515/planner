@@ -6,8 +6,11 @@ import com.example.planner.entity.Plan;
 import com.example.planner.repository.PlanRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 @Service
-public class PlanServiceImpl implements PlanService{
+public class PlanServiceImpl implements PlanService {
 
     private final PlanRepository planRepository;
 
@@ -21,5 +24,27 @@ public class PlanServiceImpl implements PlanService{
         Plan plan = new Plan(dto.getName(), dto.getPassword(), dto.getTodo());
 
         return planRepository.createPlan(plan);
+    }
+
+    @Override
+    public List<PlanResponseDto> findPlanByNameOrUpdatedDate(String name, Date updatedDate) {
+
+        if (name != null && updatedDate != null) {
+
+            return planRepository.findPlanByNameOrUpdatedDate(name, updatedDate);
+
+        } else if (name == null && updatedDate != null) {
+
+            return planRepository.findPlanByDate(updatedDate);
+
+        } else if (name != null && updatedDate == null) {
+
+            return planRepository.findPlanByName(name);
+
+        } else {
+
+            return planRepository.findAllPlans();
+
+        }
     }
 }
