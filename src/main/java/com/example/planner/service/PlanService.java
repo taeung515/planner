@@ -15,5 +15,5 @@ public interface PlanService {
 
     PlanResponseDto updatePlan(Long id, String name, String password, String todo);
 
-    void deletePlan(Long id);
+    void deletePlan(Long id, String password);
 }

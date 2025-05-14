@@ -3,7 +3,6 @@ package com.example.planner.controller;
 import com.example.planner.dto.PlanRequestDto;
 import com.example.planner.dto.PlanResponseDto;
 import com.example.planner.service.PlanService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,8 +48,11 @@ public class PlanController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePlan(@PathVariable Long id) {
-        planService.deletePlan(id);
+    public ResponseEntity<Void> deletePlan(
+            @PathVariable Long id,
+            @RequestBody PlanRequestDto dto
+    ) {
+        planService.deletePlan(id, dto.getPassword());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -83,7 +83,13 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public void deletePlan(Long id) {
+    public void deletePlan(Long id, String password) {
+        Plan planByID = planRepository.findPlanByID(id);
+
+        if (!planByID.getPassword().equals(password)){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Incorrect password");
+        }
+
         int deletedRow = planRepository.deletePlan(id);
 
         if (deletedRow == 0) {
