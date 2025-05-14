@@ -20,5 +20,5 @@
 ## API 명세서
 [API 명세서](https://documenter.getpostman.com/view/44705343/2sB2qUm4TR)
 
-## 구현 과정 및 회고
-[블로그 과정, 회고기록](https://ung9776.tistory.com/68)
+## 트러블슈팅 기록
+[블로그 바로가기](https://ung9776.tistory.com/68)
