@@ -30,9 +30,7 @@ public class PlanController {
     @GetMapping
     public ResponseEntity<List<PlanResponseDto>> findPlanByNameOrUpdatedDate(
             @RequestParam(required = false) String name,
-            @RequestParam(required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-            LocalDate updatedDate
+            @RequestParam(required = false) LocalDate updatedDate
     ) {
         return new ResponseEntity<>(planService.findPlanByNameOrUpdatedDate(name, updatedDate), HttpStatus.OK);
     }
