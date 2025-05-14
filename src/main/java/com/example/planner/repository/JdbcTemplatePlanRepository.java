@@ -76,8 +76,8 @@ public class JdbcTemplatePlanRepository implements PlanRepository {
     }
 
     @Override
-    public int updatePlan(Long id, String name, String todo) {
-        return jdbcTemplate.update("UPDATE plan SET name = ?, todo = ? where id = ?", name, todo, id);
+    public int updatePlan(Plan plan) {
+        return jdbcTemplate.update("UPDATE plan SET name = ?, todo = ? where id = ?", plan.getName(), plan.getTodo(), plan.getId());
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.planner.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.logging.log4j.util.Strings;
 
 import java.util.Date;
 
@@ -26,5 +27,14 @@ public class Plan {
     public Plan(String name, Date updatedDate) {
         this.name = name;
         this.updatedDate = updatedDate;
+    }
+
+    public void editPlan(String name, String todo) {
+        if (Strings.isNotBlank(name)) {
+            this.name = name;
+        }
+        if (Strings.isNotBlank(todo)) {
+            this.todo = todo;
+        }
     }
 }

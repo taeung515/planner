@@ -61,7 +61,7 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public PlanResponseDto updatePlan(Long id, String name, String password, String todo) {
 
-        if ((name == null && todo == null) || password == null){
+        if ((name == null && todo == null) || password == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Enter your name or todo, and you must enter your password");
         }
 
@@ -71,22 +71,17 @@ public class PlanServiceImpl implements PlanService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Incorrect password");
         }
 
-        int updatedRow = planRepository.updatePlan(id, name, todo);
+        planByID.editPlan(name, todo);
+        planRepository.updatePlan(planByID);
 
-        if (updatedRow == 0) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
-        }
-
-        Plan updatedPlan = planRepository.findPlanByID(id);
-
-        return new PlanResponseDto(updatedPlan);
+        return new PlanResponseDto(planByID);
     }
 
     @Override
     public void deletePlan(Long id, String password) {
         Plan planByID = planRepository.findPlanByID(id);
 
-        if (!planByID.getPassword().equals(password)){
+        if (!planByID.getPassword().equals(password)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Incorrect password");
         }
 
